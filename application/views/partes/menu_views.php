@@ -75,7 +75,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
-				</span>Cuenta de <b><?php echo $usuario; ?></b> </a>
+				</span>Datos de Socios</b> </a>
 			</h4>
 		</div>
 		<div id="collapseThree" class="panel-collapse collapse">
@@ -83,12 +83,12 @@
 				<table class="table">
 					<tr>
 						<td>
-							<a href="usuario_controller/all">Mis datos</a>
+							<a href="<?php echo base_url('misdatos');?>">Socios</a>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<a href="panel_controller/logout">Cerrar Sesión</a>
+							<a href="<?php echo base_url('logout');?>">Cerrar Sesión</a>
 						</td>
 					</tr>
 				</table>

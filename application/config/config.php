@@ -22,7 +22,7 @@
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://127.0.0.1/carrito/';
+$config['base_url'] = 'http://127.0.0.1/biblioteca/';
 
 /*
 |--------------------------------------------------------------------------

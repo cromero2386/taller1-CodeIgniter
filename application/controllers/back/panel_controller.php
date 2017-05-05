@@ -1,5 +1,6 @@
 <?php 
-session_start(); //we need to call PHP's session object to access it through CI
+session_start(); 
+//we need to call PHP's session object to access it through CI
 class Panel_controller extends CI_Controller {
  
     function __construct()
@@ -13,7 +14,7 @@ class Panel_controller extends CI_Controller {
         {
             $session_data = $this->session->userdata('logged_in');
             $data['usuario'] = $session_data['usuario'];
-            $this->load->view('panel_views', $data);
+            $this->load->view('back/panel_views', $data);
         }
         else
         {
@@ -27,7 +28,7 @@ class Panel_controller extends CI_Controller {
         $this->session->unset_userdata('logged_in');
         session_destroy();
         //redirect('panel_controller', 'refresh');
-        $this->load->view('login_views');
+        $this->load->view('back/login_views');
     }
  
 }

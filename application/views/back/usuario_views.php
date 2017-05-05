@@ -11,15 +11,32 @@
 	        </div>
 	        <div class="col-sm-9 col-md-9">
 	            <div class="well">
-	                <h1>Ejemplo práctico de una biblioteca</h1>
-	            </div>
+	                <h1>Todos los Socios</h1>
+	            </div>	            
+	            <table class="table table-bordered">
+	            	<thead>
+	            		<tr>
+	            		    <th>N°</th>
+	            			<th>Nombre</th>
+	            			<th>Apellido</th>
+	            			<th>Usuario</th>
+	            			<th>Editar</th>
+	            		</tr>
+	            	</thead>
+	            	<tbody>
+	            	    <?php foreach($socios->result() as $row){ ?>
+	            		<tr>
+	            			<td><?php echo $row->id;  ?></td>
+	            			<td><?php echo $row->nombre;  ?></td>
+	            			<td><?php echo $row->apellido;  ?></td>
+	            			<td><?php echo $row->usuario;  ?></td>
+	            			<td><a href="<?php echo base_url("back/usuario_controller/edit/$row->id");?>">Editar</a></td>
+	            		</tr>
+	            		<?php } ?>
+	            	</tbody>
+	            </table>	            
 	            <div>
-	            	<?php
-		            	$this->table->set_heading('Name', 'Color', 'Size');
-						$this->table->add_row('Fred', 'Blue', 'Small');
-						$this->table->add_row('Mary', 'Red', 'Large');
-						$this->table->add_row('John', 'Green', 'Medium');	
-					?>	
+	            		
 	            </div>
 	        </div>
 	    </div>
