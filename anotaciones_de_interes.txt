@@ -1,0 +1,2 @@
+INSERT PRIMER USUARIO
+INSERT INTO `socios`(`nombre`, `apellido`, `dias_prestamos`, `usuario`, `pass`) VALUES ('Carlos', 'Romero',5, 'car', MD5('car'));
