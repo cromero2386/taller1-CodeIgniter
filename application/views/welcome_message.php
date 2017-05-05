@@ -67,7 +67,7 @@
 <body>
 
 <div id="container">
-	<h1>Carlos Probando!  <?php echo $id; ?></h1>
+	<h1>Carlos Probando!</h1>
 
 	<div id="body">
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
