@@ -88,6 +88,16 @@ Class Socio extends CI_Model
             return FALSE;
         }
     }
+    /**
+    * Inserta todos los datos de un socio
+    *
+    * @access  public
+    * @param   array
+    * @return  boolean
+    */
+    public function create_socio($data){
+        $this->db->insert('socios', $data);
+    }
 }
 /* End of file usuario.php */
 /* Location: ./application/models/usuario.php */

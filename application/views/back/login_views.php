@@ -18,7 +18,6 @@
 		                <?php echo form_submit('iniciar_sesion', 'Iniciar sesión',"class='btn btn-lg btn-primary btn-block'"); ?>
 					<?php echo form_close(); ?>
 	            </div>
-	            <a href="#" class="text-center new-account">Crea una cuenta</a>
 	        </div>
 	    </div>
     </div>

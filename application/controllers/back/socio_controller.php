@@ -52,6 +52,48 @@ class Socio_controller extends CI_Controller {
 		
 	}
 	/**
+	* Llamo a la vista insert_views
+	*/
+	function form_insert(){
+		$this->load->view('back/inse_socio_views');
+	}
+	/**
+    * Función que llama al insertar datos
+    * @access  public
+    */ 
+	function insert_socio(){
+		//Validación del formulario
+		$this->form_validation->set_rules('nombre', 'Nombre', 'required');
+		$this->form_validation->set_rules('apellido', 'Apellido', 'required');
+		$this->form_validation->set_rules('dias_prestamos', 'Dias Prestados', 'required|numeric');
+		$this->form_validation->set_rules('usuario', 'Usuario', 'required');
+		$this->form_validation->set_rules('pass', 'Password', 'required');
+
+		//Mensaje del form_validation
+		$this->form_validation->set_message('required','<div class="alert alert-danger">El campo %s es obligatorio</div>');     
+		$this->form_validation->set_message('numeric','<div class="alert alert-danger">El campo %s debe contener un valor numérico</div>');           
+
+		$pass = $this->input->post('pass',true);
+		$data = array(
+			'nombre'=>$this->input->post('nombre',true),
+			'apellido'=>$this->input->post('apellido',true),
+			'dias_prestamos'=>$this->input->post('dias_prestamos',true),
+			'usuario'=>$this->input->post('usuario',true),
+			'pass'=>base64_encode($pass)
+			);
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('back/inse_socio_views');
+		}
+		else
+		{
+			//Envio array el metodo insert para registro de datos
+			$datos_socios = $this->socio->create_socio($data);
+			redirect('datos', 'refresh');
+		}	
+	}
+	/**
     * Función edit que obtiene todos los datos del socio referenciado por un id
     * y lo muestra en la vista back/edit_socio_views con el parametro $data
     * @access  public
@@ -93,12 +135,13 @@ class Socio_controller extends CI_Controller {
 		//Validación del formulario
 		$this->form_validation->set_rules('nombre', 'Nombre', 'required');
 		$this->form_validation->set_rules('apellido', 'Apellido', 'required');
-		$this->form_validation->set_rules('dias_prestamos', 'Dias Prestados', 'required');
+		$this->form_validation->set_rules('dias_prestamos', 'Dias Prestados', 'required|numeric');
 		$this->form_validation->set_rules('usuario', 'Usuario', 'required');
-		$this->form_validation->set_rules('pass', 'Pass', 'required');
+		$this->form_validation->set_rules('pass', 'Password', 'required');
 
 		//Mensaje del form_validation
-		$this->form_validation->set_message('required','<div class="alert alert-danger">El campo %s es obligatorio</div>');             
+		$this->form_validation->set_message('required','<div class="alert alert-danger">El campo %s es obligatorio</div>');    
+		$this->form_validation->set_message('numeric','<div class="alert alert-danger">El campo %s debe contener un valor numérico</div>');         
 
 		$id = $this->uri->segment(2);
 		$pass = $this->input->post('pass',true);

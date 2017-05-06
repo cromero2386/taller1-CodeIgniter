@@ -39,7 +39,7 @@
 */
 //views por defecto
 $route['default_controller'] = "welcome";
-// Verifico user  y pass
+// views de Login
 $route['ingreso'] = "back/socio_controller";
 // Verifico user  y pass
 $route['verifico'] = "back/verifico_controller";
@@ -51,6 +51,14 @@ $route['logout'] = 'back/panel_controller/logout';
 $route['404_override'] = '';
 //views a los datos de los socios
 $route['datos'] = 'back/socio_controller/all';
+//views form insert datos
+$route['insert'] = 'back/socio_controller/form_insert';
+//views form insert datos
+$route['registro'] = 'back/socio_controller/insert_socio';
+/**
+* Rutas con parametros
+*
+*/
 //views a editar socio y muestra los datos del socio a editar
 $route['user_edit/(:num)'] = "back/socio_controller/edit/$1";
 //Envia los nuevos datos del socio modificado
