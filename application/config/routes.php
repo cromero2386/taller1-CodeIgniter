@@ -40,6 +40,8 @@
 //views por defecto
 $route['default_controller'] = "welcome";
 // Verifico user  y pass
+$route['ingreso'] = "back/socio_controller";
+// Verifico user  y pass
 $route['verifico'] = "back/verifico_controller";
 //Logueo correcto voy al Panel Principal
 $route['panel'] = "back/panel_controller";
