@@ -16,7 +16,7 @@
 	            <table class="table table-bordered">
 	            	<thead>
 	            		<tr>
-	            		    <th>N°</th>
+	            			<th>N°</th>
 	            			<th>Nombre</th>
 	            			<th>Apellido</th>
 	            			<th>Usuario</th>

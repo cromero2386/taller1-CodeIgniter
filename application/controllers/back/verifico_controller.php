@@ -1,14 +1,30 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * Verifico_controller
+ *
+ * @package     Controller/back
+ * @author      Lic. Romero, Carlos Alberto
+*/ 
 class Verifico_controller extends CI_Controller {
 
+    /**
+     * Constructor del Controller
+     *
+     * @package     back
+     * Cargo modelo socio
+    */ 
     function __construct()
     {
         parent::__construct();
         $this->load->model('socio','',TRUE);
 
     }
- 
+    /**
+    * Función principal del controlador ejecuta por defecto si no nombramos el metodo.
+    * Ejecuta la validación del formulario y si es FALSE muestra la vista de login,
+    * Si redige a la ruta panel si es correcta la verificación y logeo
+    * @access  public
+    */ 
     function index()
     {
         //This method will have the credentials validation
@@ -28,7 +44,12 @@ class Verifico_controller extends CI_Controller {
         }
 
     }
-
+    /**
+    * Función que chequea los datos en la base si exiten.
+    * Si es correcto creo un arreglo de session del socio
+    * Si es incorrecto se muestra un mensaje de error de datos ingresados
+    * @access  public
+    */ 
     function check_database($password)
     {
         //Field validation succeeded.  Validate against database

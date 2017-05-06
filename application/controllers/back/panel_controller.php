@@ -1,13 +1,30 @@
 <?php 
-session_start(); 
-//we need to call PHP's session object to access it through CI
+//Se encarga de manejar la sesion de un socio, ni no estas logeado no podrás ingresar al panel
+session_start();
+/**
+ * Panel_controller
+ *
+ * @package     back
+ * @author      Lic. Romero, Carlos Alberto
+*/ 
 class Panel_controller extends CI_Controller {
  
+    /**
+    * Constructor del controller
+    *
+    * @access  public
+    */
     function __construct()
     {
         parent::__construct();
     }
- 
+    
+    /**
+    * Función principal del controlador ejecuta por defecto si no nombramos el metodo.
+    * Si existe sesión activa muestra la vista del panel general.
+    * Si no hay sesión, redirige a la ruta panel
+    * @access  public
+    */
     function index()
     {
         if($this->session->userdata('logged_in'))
@@ -18,11 +35,14 @@ class Panel_controller extends CI_Controller {
         }
         else
         {
-            //If no session, redirect to login page
             redirect('panel', 'refresh');
         }
     }
- 
+    /**
+    * Función para cerrar la sesión activa.
+    * Muestra la vista de login al cerrar sesión
+    * @access  public
+    */
     function logout()
     {
         $this->session->unset_userdata('logged_in');
