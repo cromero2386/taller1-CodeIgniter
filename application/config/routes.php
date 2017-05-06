@@ -42,12 +42,14 @@ $route['default_controller'] = "welcome";
 //views de error
 $route['404_override'] = '';
 //views al panel principal
-$route['panel'] = 'back/usuario_controller';
+$route['panel'] = 'back/socio_controller';
 //views a los datos del socio
-$route['misdatos'] = 'back/usuario_controller/all';
+$route['misdatos'] = 'back/socio_controller/all';
 //views a los datos del socio
 $route['logout'] = 'back/panel_controller/logout';
 //views a editar socio
-$route['user_edit'] = "back/usuario_controller/edit";
+$route['user_edit'] = "back/socio_controller/edit";
+//Logueo correcto voy al Panel Principal
+$route['panel'] = "back/panel_controller";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

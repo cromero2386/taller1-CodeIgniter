@@ -30,7 +30,7 @@
 	            			<td><?php echo $row->nombre;  ?></td>
 	            			<td><?php echo $row->apellido;  ?></td>
 	            			<td><?php echo $row->usuario;  ?></td>
-	            			<td><a href="<?php echo base_url("back/usuario_controller/edit/$row->id");?>">Editar</a></td>
+	            			<td><a href="<?php echo base_url("back/socio_controller/edit/$row->id");?>">Editar</a></td>
 	            		</tr>
 	            		<?php } ?>
 	            	</tbody>

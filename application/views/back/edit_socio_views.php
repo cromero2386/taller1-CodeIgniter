@@ -13,7 +13,7 @@
 	            <div class="well">
 	                <h1>Socio para modificar</h1>
 	            </div>	            
-	            <?php echo form_open('back/usuario_controller/editar_socio/'.$id, ['class' => 'form-signin', 'role' => 'form']); ?>
+	            <?php echo form_open('back/socio_controller/editar_socio/'.$id, ['class' => 'form-signin', 'role' => 'form']); ?>
 	            	<div class="form-group">
 		                <?php echo form_input(['name' => 'nombre','value'=>"$nombre", 'id' => 'nombre', 'class' => 'form-control','placeholder' => 'ingrese nombre', 'required'=>'required', 'autofocus'=>'autofocus']); ?>
 		            </div>

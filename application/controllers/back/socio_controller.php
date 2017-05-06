@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 session_start(); 
-class Usuario_controller extends CI_Controller {
+class Socio_controller extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
-        $this->load->model('usuario');
+        $this->load->model('socio');
     }
 
 	public function index()
@@ -19,14 +19,14 @@ class Usuario_controller extends CI_Controller {
             $session_data = $this->session->userdata('logged_in');
             $dat['usuario'] = $session_data['usuario'];
             $data = array(
-		        'socios' => $this->usuario->get_socios()
+		        'socios' => $this->socio->get_socios()
 		    );
-            $this->load->view('back/usuario_views', array_merge($dat, $data));
+            $this->load->view('back/socio_views', array_merge($dat, $data));
         }
         else
         {
             //If no session, redirect to login page
-            redirect('usuario_controller', 'refresh');
+            redirect('panel', 'refresh');
         }
 		
 	}
@@ -34,7 +34,7 @@ class Usuario_controller extends CI_Controller {
 	function edit(){
 		$id = $this->uri->segment(4);
 		//$dat['id'] = $id;
-		$datos_socios = $this->usuario->update_socios($id);
+		$datos_socios = $this->socio->update_socios($id);
 		if ($datos_socios != FALSE) {
 			foreach ($datos_socios->result() as $row) {
 				$nombre = $row->nombre;
@@ -56,7 +56,7 @@ class Usuario_controller extends CI_Controller {
 		} else {
 			return FALSE;
 		}		
-		$this->load->view('back/edit_usuario_views',$data);
+		$this->load->view('back/edit_socio_views',$data);
 	}
 
 	function editar_socio(){
@@ -69,7 +69,7 @@ class Usuario_controller extends CI_Controller {
 			'usuario'=>$this->input->post('usuario',true),
 			'pass'=>base64_encode($pass)
 			);
-		$this->usuario->set_socio($id, $data);
+		$this->socio->set_socio($id, $data);
 		redirect('misdatos', 'refresh');
 	}
 

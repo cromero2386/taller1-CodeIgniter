@@ -19,7 +19,7 @@ class Panel_controller extends CI_Controller {
         else
         {
             //If no session, redirect to login page
-            redirect('back/usuario_controller', 'refresh');
+            redirect('panel', 'refresh');
         }
     }
  
@@ -27,7 +27,6 @@ class Panel_controller extends CI_Controller {
     {
         $this->session->unset_userdata('logged_in');
         session_destroy();
-        //redirect('panel_controller', 'refresh');
         $this->load->view('back/login_views');
     }
  

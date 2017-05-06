@@ -5,7 +5,7 @@ class Verifico_controller extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('usuario','',TRUE);
+        $this->load->model('socio','',TRUE);
 
     }
  
@@ -24,7 +24,7 @@ class Verifico_controller extends CI_Controller {
         else
         {
             //Go to private area
-            redirect('back/panel_controller', 'refresh');
+            redirect('panel', 'refresh');
         }
 
     }
@@ -34,7 +34,7 @@ class Verifico_controller extends CI_Controller {
         //Field validation succeeded.  Validate against database
         $username = $this->input->post('usuario');
         //query the database
-        $result = $this->usuario->login($username, $password);
+        $result = $this->socio->login($username, $password);
  
         if($result)
         {

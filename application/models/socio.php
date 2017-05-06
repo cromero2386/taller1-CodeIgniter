@@ -1,5 +1,5 @@
 <?php
-Class Usuario extends CI_Model
+Class Socio extends CI_Model
 {
     public function __construct() {
         parent::__construct();
@@ -7,14 +7,11 @@ Class Usuario extends CI_Model
 
     function login($username, $password)
     {
-        $this->db->select('id, usuario, pass');
-        $this->db->from('socios');
         $this->db->where('usuario', $username);
         $this->db->where('pass', base64_encode($password));
         $this->db->limit(1);
-
-        $query = $this->db->get();
-
+        $query = $this->db->get('socios');
+        
         if($query->num_rows() == 1)
         {
             return $query->result();
@@ -27,9 +24,9 @@ Class Usuario extends CI_Model
 
     function get_socios()
     {
-        $this->db->select('*');
-        $this->db->from('socios');
-        $query = $this->db->get();
+
+        $query = $this->db->get("socios");
+        
         if($query->num_rows()>0) {
             return $query;
         } else {
@@ -38,13 +35,11 @@ Class Usuario extends CI_Model
         
     }
     function update_socios($id){
-        /*$this->db->where('id', $id);
-        $query = $this->db->get('socios');*/
-        $this->db->select('*');
-        $this->db->from('socios');
+        
         $this->db->where('id', $id);
-        $query = $this->db->get();
-        if($query->num_rows()==1) {
+        $query = $this->db->get('socios');
+        
+        if($query->num_rows() == 1) {
             return $query;
         } else {
             return FALSE;
