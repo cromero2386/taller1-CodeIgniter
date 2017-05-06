@@ -57,7 +57,7 @@ class Socio_controller extends CI_Controller {
     * @access  public
     */ 
 	function edit(){
-		$id = $this->uri->segment(4);
+		$id = $this->uri->segment(2);
 		$datos_socios = $this->socio->update_socios($id);
 		if ($datos_socios != FALSE) {
 			foreach ($datos_socios->result() as $row) {
@@ -85,25 +85,46 @@ class Socio_controller extends CI_Controller {
 	/**
     * Función editar_socio obtiene los datos de la vista back/edit_socio_views
     * y ejecuta el metodo para actualizar los datos del socio, si es correcto la actualización
+    * Valido formulario
     * redirige a la ruta mis datos
     * @access  public
     */ 
 	function editar_socio(){
-		$id = $this->uri->segment(4);
+		//Validación del formulario
+		$this->form_validation->set_rules('nombre', 'Nombre', 'required');
+		$this->form_validation->set_rules('apellido', 'Apellido', 'required');
+		$this->form_validation->set_rules('dias_prestamos', 'Dias Prestados', 'required');
+		$this->form_validation->set_rules('usuario', 'Usuario', 'required');
+		$this->form_validation->set_rules('pass', 'Pass', 'required');
+
+		//Mensaje del form_validation
+		$this->form_validation->set_message('required','<div class="alert alert-danger">El campo %s es obligatorio</div>');             
+
+		$id = $this->uri->segment(2);
 		$pass = $this->input->post('pass',true);
 		$data = array(
+			'id'=>$id,
 			'nombre'=>$this->input->post('nombre',true),
 			'apellido'=>$this->input->post('apellido',true),
 			'dias_prestamos'=>$this->input->post('dias_prestamos',true),
-			'usuario'=>$this->input->post('usuario',true),
-			'pass'=>base64_encode($pass)
+			'usuario'=>$this->input->post('usuario',true)
 			);
-		if ($this->socio->set_socio($id, $data)) {
-			redirect('misdatos', 'refresh');
-		} else {
-			$this->load->view('partes/error404_views');
-		}
 		
+		if ($this->form_validation->run() == FALSE)
+		{
+			//Si hay error en algun campo del formulario la clave permanece legible
+			$data['pass'] = $pass;
+
+			$this->load->view('back/edit_socio_views',$data);
+		}
+		else
+		{
+			//Si la validación del formulario es correcta la clave la encripta
+			$data['pass']= base64_encode($pass);
+
+			$this->socio->set_socio($id, $data);
+			redirect('datos', 'refresh');
+		}
 		
 		
 	}

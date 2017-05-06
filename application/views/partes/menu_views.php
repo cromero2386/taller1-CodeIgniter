@@ -83,7 +83,7 @@
 				<table class="table">
 					<tr>
 						<td>
-							<a href="<?php echo base_url('misdatos');?>">Socios</a>
+							<a href="<?php echo base_url('datos');?>">Socios</a>
 						</td>
 					</tr>
 					<tr>

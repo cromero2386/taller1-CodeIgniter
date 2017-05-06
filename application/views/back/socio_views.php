@@ -6,10 +6,10 @@
 <body>
 	<div class="container">
 	    <div class="row">
-	        <div class="col-sm-3 col-md-3">
+	        <div class="col-sm-2 col-md-2">
 	        	<?php $this->load->view('partes/menu_views');?>    
 	        </div>
-	        <div class="col-sm-9 col-md-9">
+	        <div class="col-sm-10 col-md-10">
 	            <div class="well">
 	                <h1>Todos los Socios</h1>
 	            </div>	            
@@ -30,7 +30,7 @@
 	            			<td><?php echo $row->nombre;  ?></td>
 	            			<td><?php echo $row->apellido;  ?></td>
 	            			<td><?php echo $row->usuario;  ?></td>
-	            			<td><a href="<?php echo base_url("back/socio_controller/edit/$row->id");?>">Editar</a></td>
+	            			<td><a href="<?php echo base_url("user_edit/$row->id");?>">Editar</a></td>
 	            		</tr>
 	            		<?php } ?>
 	            	</tbody>

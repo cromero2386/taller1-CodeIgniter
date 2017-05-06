@@ -1,1 +1,13 @@
-git push -f origin master  (push)
+--La Base de Datos se debe llamar como ustedes quieran y el codigo para crear las tablas se encuentra en el directorio raiz con el nombre taller.sql
+
+-- No olvidar configurar los archivos autoload.php, config.php y database.php que esta en la carpeta application/config/
+
+-- Todas las rutas estan en application/config/routes.php es aqui donde realizo las rutas amigables.
+
+-- Cada Modelo y Controller tiene sus metodos debidamente documentado.
+
+-- Formulario de logeo validado con Form Validation.
+
+-- Formulario de editar socio validado con Form Validation.
+
+-- Formulario de alta socio validado con Form Validation. 
