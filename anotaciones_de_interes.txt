@@ -10,4 +10,4 @@
 
 -- Formulario de editar socio validado con Form Validation.
 
--- Formulario de alta socio validado con Form Validation. 
+-- Formulario de alta socio validado con Form Validation(Falta crear el form y insertar). 
