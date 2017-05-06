@@ -1,5 +1,16 @@
 --La Base de Datos se debe llamar como ustedes quieran y el codigo para crear las tablas se encuentra en el directorio raiz con el nombre taller.sql
 
+-- Luego de crear las tablas deben ejecutar en la pestaña sql del PHPMyAdmin la siguiente consulta:
+
+INSERT INTO `socios`(`nombre`, `apellido`, `dias_prestamos`, `usuario`, `pass`) VALUES ('car','car',5,'car','Y2Fy');
+
+la cual agrega un usuario a socios, para logeo es:
+
+usuario: car
+pass: car
+
+al insertar tiene esos caracteres porque ya esta encriptado el pass anterior es base_64
+
 -- No olvidar configurar los archivos autoload.php, config.php y database.php que esta en la carpeta application/config/
 
 -- Todas las rutas estan en application/config/routes.php es aqui donde realizo las rutas amigables.
