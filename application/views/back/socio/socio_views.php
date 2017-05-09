@@ -12,7 +12,7 @@
 	        <div class="col-sm-10 col-md-10">
 	            <div class="well">
 	                <h1>Todos los Socios</h1>
-	            </div>	   
+	            </div>	
 	            <a type="button" class="btn btn-success" href="<?php echo base_url('insert'); ?>">Agregar</a>    
 	            <table class="table table-bordered">
 	            	<thead>

@@ -25,7 +25,7 @@ Class Socio extends CI_Model
     */
     function login($username, $password)
     {
-        $query = $this->db->get_where('socios', array('usuario' => $username, 'pass' => base64_encode($password) ), 1);
+        $query = $this->db->get_where('socios', array('usuario'=>$username,'pass'=>base64_encode($password)), 1);
 
         if($query->num_rows() == 1)
         {

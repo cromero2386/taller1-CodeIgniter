@@ -35,33 +35,43 @@
 |
 | This route will tell the Router what URI segments to use if those provided
 | in the URL cannot be matched to a valid route.
-|back/socio_controller/editar_socio/
+| Views por defecto(default_controller)
 */
-//views por defecto
 $route['default_controller'] = "welcome";
-// views de Login
-$route['ingreso'] = "back/socio_controller";
-// Verifico user  y pass
-$route['verifico'] = "back/verifico_controller";
-//Logueo correcto voy al Panel Principal
-$route['panel'] = "back/panel_controller";
-//Cierro sesión
-$route['logout'] = 'back/panel_controller/logout';
-//views de error
-$route['404_override'] = '';
-//views a los datos de los socios
-$route['datos'] = 'back/socio_controller/all';
-//views form insert datos
-$route['insert'] = 'back/socio_controller/form_insert';
-//views form insert datos
-$route['registro'] = 'back/socio_controller/insert_socio';
-/**
-* Rutas con parametros
-*
+/*
+* Rutas para tratamiento de usuarios para ingreso y cierre de sesión.
+* Verifico user  y pass (verifico)
+* Views de Login(ingreso)
+* Logueo correcto voy al Panel Principal(panel)
+* Cierro sesión(logout)
+* Views de error(404_override)
 */
-//views a editar socio y muestra los datos del socio a editar
+$route['verifico'] = "back/verifico_controller";
+$route['ingreso'] = "back/socio_controller";
+$route['panel'] = "back/panel_controller";
+$route['logout'] = 'back/panel_controller/logout';
+$route['404_override'] = '';
+/*
+* Rutas para tratamiento de socios
+* Views a los datos de los socios(datos)
+* Views form insert datos(insert)
+* Views guarda form insert datos(registro)
+* Views a editar socio y muestra los datos del socio a editar(user_edit/(:num))
+* Envia los nuevos datos del socio modificado(user_up/(:num))
+*/
+$route['datos'] = 'back/socio_controller/all';
+$route['insert'] = 'back/socio_controller/form_insert';
+$route['registro'] = 'back/socio_controller/insert_socio';
 $route['user_edit/(:num)'] = "back/socio_controller/edit/$1";
-//Envia los nuevos datos del socio modificado
 $route['user_up/(:num)'] = "back/socio_controller/editar_socio/$1";
+/*
+* Rutas para tratamiento de datos de libros
+* Muestra todos los libros(libros)
+* Muestra formulario para insertar libros(insert_l)
+* Inserta libro(registro_l)
+*/
+$route['libros'] = 'back/libro_controller';
+$route['insert_l'] = 'back/libro_controller/form_insert_l';
+$route['registro_l'] = 'back/libro_controller/insert_libro';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

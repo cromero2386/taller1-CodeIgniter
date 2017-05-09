@@ -27,8 +27,6 @@ class Verifico_controller extends CI_Controller {
     */ 
     function index()
     {
-        //This method will have the credentials validation
-        //$this->load->library('form_validation');
         $this->form_validation->set_rules('usuario', 'Usuario', 'trim|required|xss_clean');
         $this->form_validation->set_rules('pass', 'Pass', 'trim|required|xss_clean|callback_check_database');
 

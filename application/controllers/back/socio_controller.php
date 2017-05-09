@@ -42,7 +42,7 @@ class Socio_controller extends CI_Controller {
             $data = array(
 		        'socios' => $this->socio->get_socios()
 		    );
-            $this->load->view('back/socio_views', array_merge($dat, $data));
+            $this->load->view('back/socio/socio_views', array_merge($dat, $data));
         }
         else
         {
@@ -52,10 +52,10 @@ class Socio_controller extends CI_Controller {
 		
 	}
 	/**
-	* Llamo a la vista insert_views
+	* Llamo a la vista inse_socio_views
 	*/
 	function form_insert(){
-		$this->load->view('back/inse_socio_views');
+		$this->load->view('back/socio/inse_socio_views');
 	}
 	/**
     * Función que llama al insertar datos
@@ -84,7 +84,7 @@ class Socio_controller extends CI_Controller {
 		
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('back/inse_socio_views');
+			$this->load->view('back/socio/inse_socio_views');
 		}
 		else
 		{
@@ -122,7 +122,7 @@ class Socio_controller extends CI_Controller {
 		} else {
 			return FALSE;
 		}		
-		$this->load->view('back/edit_socio_views',$data);
+		$this->load->view('back/socio/edit_socio_views',$data);
 	}
 	/**
     * Función editar_socio obtiene los datos de la vista back/edit_socio_views
@@ -158,7 +158,7 @@ class Socio_controller extends CI_Controller {
 			//Si hay error en algun campo del formulario la clave permanece legible
 			$data['pass'] = $pass;
 
-			$this->load->view('back/edit_socio_views',$data);
+			$this->load->view('back/socio/edit_socio_views',$data);
 		}
 		else
 		{
@@ -173,5 +173,5 @@ class Socio_controller extends CI_Controller {
 	}
 
 }
-/* End of file welcome.php */
+/* End of file usuario_controller.php */
 /* Location: ./application/controllers/back/usuario_controller.php */

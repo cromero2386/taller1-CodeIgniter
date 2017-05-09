@@ -11,7 +11,7 @@
 				<table class="table">
 					<tr>
 						<td>
-							<a href="http://www.jquery2dotnet.com">Libros</a>
+							<a href="<?php echo base_url('libros');?>">Libros</a>
 						</td>
 					</tr>
 				</table>

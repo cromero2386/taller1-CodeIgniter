@@ -20,9 +20,14 @@ Como dije en el día de 05/04/2017 esto puede variar debido a su base_url de su 
 -- Todas las rutas estan en application/config/routes.php es aqui donde realizo las rutas amigables.
 
 -- Cada Modelo y Controller tiene sus metodos debidamente documentado.
-
+/*
+* Socios
+*/
 -- Formulario de logeo validado con Form Validation.
 
 -- Formulario de editar socio validado con Form Validation.
 
--- Formulario de alta socio validado con Form Validation
+-- Formulario de alta socio validado con Form Validation.
+/*
+* Libros
+*/
