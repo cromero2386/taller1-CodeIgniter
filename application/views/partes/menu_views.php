@@ -11,7 +11,7 @@
 				<table class="table">
 					<tr>
 						<td>
-							<a href="<?php echo base_url('libros');?>">Libros</a>
+							<a href="#">Libros</a>
 						</td>
 					</tr>
 				</table>
@@ -30,7 +30,7 @@
 				<table class="table">
 					<tr>
 						<td>
-							<a href="#">Todos</a>
+							<a href="<?php echo base_url('libros');?>">Todos</a>
 						</td>
 					</tr>
 					<tr>

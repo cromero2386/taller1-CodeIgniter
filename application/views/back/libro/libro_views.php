@@ -35,7 +35,7 @@
 	            			<td><?php echo $row->editorial;  ?></td>
 	            			<td><?php echo $row->stock;  ?></td>
 	            			<td></td>
-	            			<td><a href="<?php echo base_url("user_edit/$row->id");?>">Editar</a></td>
+	            			<td><a href="#">Editar</a></td>
 	            		</tr>
 	            		<?php } ?>
 	            	</tbody>

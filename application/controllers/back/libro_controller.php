@@ -68,7 +68,8 @@ class Libro_controller extends CI_Controller {
 	/**
 	* Obtiene los datos del archivo imagen.
 	* Permite archivos gif, jpg, png
-	* 
+	* Verifica si los datos son correcto en conjunto con la imagen y lo inserta en la tabla correspondiente
+	* En la tabla guarda la URL de donde se encuentra la imagen.
 	*/
 	function _image_upload()
 	{

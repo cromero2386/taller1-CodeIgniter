@@ -31,3 +31,8 @@ Como dije en el día de 05/04/2017 esto puede variar debido a su base_url de su 
 /*
 * Libros
 */
+-- Listado de libros no se visualizan todos los datos..
+-- Alta de libros que permite insertar una imagen y guarda en la tabla la url de la misma.
+-- Creo la carpeta uploads donde estarán todas las imagenes que se inserten en la tabla.
+-- Formulario alta de libros validado con form_validation
+-- En el listado de socio no esta funcional Ver mas y Editar en una próxima actualización va a estar disponible.
