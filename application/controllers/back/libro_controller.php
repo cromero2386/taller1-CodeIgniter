@@ -47,93 +47,71 @@ class Libro_controller extends CI_Controller {
 		$this->form_validation->set_rules('anio', 'Año', 'required|numeric');
 		$this->form_validation->set_rules('stock', 'Stock', 'required|numeric');
 		$this->form_validation->set_rules('stock_minimo', 'Stock Minimo', 'required|numeric');
-		$this->form_validation->set_rules('fil', 'FIl', 'callback__image_upload');
+		$this->form_validation->set_rules('filename', 'FIl', 'callback__image_upload');
 		
 
 		//Mensaje del form_validation
 		$this->form_validation->set_message('required','<div class="alert alert-danger">El campo %s es obligatorio</div>');
 		$this->form_validation->set_message('numeric','<div class="alert alert-danger">El campo %s debe contener un valor numérico</div>'); 
-
 		$this->form_validation->set_message('file_selected_test', '<div class="alert alert-danger">Por favor seleccione archivo de imagen</div>');
-		//$url = $this->do_upload();
 		
-		if ($this->form_validation->run() == TRUE)
+		if (!$this->form_validation->run())
 		{
 
 			$this->load->view('back/libro/inse_libro_views');
 		}
 		else
 		{
-			$url ="./uploads/".$_FILES['fil']['name'];
-			$data = array(
-				'titulo'=>$this->input->post('titulo',true),
-				'edicion'=>$this->input->post('edicion',true),
-				'editorial'=>$this->input->post('editorial',true),
-				'anio'=>$this->input->post('anio',true),
-				'imagen'=>$url,
-				'stock'=>$this->input->post('stock',true),
-				'stock_minimo'=>$this->input->post('stock_minimo',true)
-
-			);
-			//Envio array el metodo insert para registro de datos
-			$datos_socios = $this->libro->create_libro($data);
-			redirect('libros', 'refresh');
+			$this->_image_upload();			
 		}
 	}
-	/*function file_selected_test(){
-
-	    
-	    if (empty($_FILES['fil']['name'])) {
-	            return false;
-	        }else{
-	            return true;
-	        }
-	}
-	private function do_upload()
-	{
-		$type = explode('.', $_FILES["fil"]["name"]);
-		$type = strtolower($type[count($type)-1]);
-		$url = "./uploads/".uniqid(rand()).'.'.$type;
-		if(in_array($type, array("jpg", "jpeg", "gif", "png")))
-		{
-			if(is_uploaded_file($_FILES["fil"]["tmp_name"]))
-			{
-				if(move_uploaded_file($_FILES["fil"]["tmp_name"],$url))
-				{
-					return $url;
-				}
-			}
-		}else{
-			
-			return "";
-		}
-	}
-*/
-		function _image_upload()
+	/**
+	* Obtiene los datos del archivo imagen.
+	* Permite archivos gif, jpg, png
+	* 
+	*/
+	function _image_upload()
 	{
 		  $this->load->library('upload');
  
-            // Check if there was a file uploaded
-            if (!empty($_FILES['fil']['name']))
+            //Comprueba si hay un archivo cargado
+            if (!empty($_FILES['filename']['name']))
             {
-                // Specify configuration for File 1
-                $config['upload_path'] = 'uploads/';
+                // Especifica la configuración para el archivo
+                $config['upload_path'] = './uploads/';
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = '100';
                 $config['max_width']  = '1024';
                 $config['max_height']  = '768';       
  
-                // Initialize config for File 1 
+                // Inicializa la configuración para el archivo 
                 $this->upload->initialize($config);
  
-                // Upload file 1
-                if ($this->upload->do_upload('fil'))
+                
+                if ($this->upload->do_upload('filename'))
                 {
+                	// Mueve archivo a la carpeta indicada en la variable $data
                     $data = $this->upload->data();
-					return true;
+                    // Path donde guarda el archivo..
+                    $url ="./uploads/".$_FILES['filename']['name'];
+                    // Array de datos para insertar en libros 
+                    $data = array(
+						'titulo'=>$this->input->post('titulo',true),
+						'edicion'=>$this->input->post('edicion',true),
+						'editorial'=>$this->input->post('editorial',true),
+						'anio'=>$this->input->post('anio',true),
+						'imagen'=>$url,
+						'stock'=>$this->input->post('stock',true),
+						'stock_minimo'=>$this->input->post('stock_minimo',true)
+
+					);
+					$datos_libros = $this->libro->create_libro($data);
+					redirect('libros', 'refresh');
+					return TRUE;
                 }
                 else
                 {
+                	//Mensaje de error si no existe imagen correcta
                     $imageerrors = $this->upload->display_errors();
 					$this->form_validation->set_message('_image_upload', $imageerrors);
 					
@@ -143,6 +121,7 @@ class Libro_controller extends CI_Controller {
             }
 	
 	}
+	
 }
 /* End of file libro_controller.php */
 /* Location: ./application/controllers/back/usuario_controller.php */

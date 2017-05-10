@@ -39,8 +39,8 @@
 						<?php echo form_input(['type' => 'text','name' => 'stock_minimo', 'id' => 'stock_min', 'class' => 'form-control','placeholder' => 'ingrese stock minimo']); ?>
 					</div>
 					<div class="form-group">
-						<?php echo form_error('fil'); ?>
-						<?php echo form_input(['type' => 'file','name' => 'fil', 'id' => 'fil', 'class' => 'form-control']); ?>
+						<?php echo form_error('filename'); ?>
+						<?php echo form_input(['type' => 'file','name' => 'filename', 'id' => 'filename', 'class' => 'form-control']); ?>
 					</div>
 						<?php echo form_submit('agregar', 'Registrar',"class='btn btn-lg btn-success btn-block'"); ?>
 					<?php echo form_close(); ?>

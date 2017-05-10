@@ -294,7 +294,7 @@ class CI_Form_validation {
 			// No validation rules?  We're done...
 			if (count($this->_config_rules) == 0)
 			{
-				return TRUE;
+				return FALSE;
 			}
 
 			// Is there a validation rule for the particular URI being accessed?
