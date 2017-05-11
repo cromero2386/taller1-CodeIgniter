@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<?php $this->load->view('partes/head_views');?>
-</head>
+<?php $this->load->view('partes/head_views');?>
 <body>
 	<div class="container">
 	    <div class="row">

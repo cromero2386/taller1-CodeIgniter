@@ -114,7 +114,7 @@ class Libro_controller extends CI_Controller {
                 {
                 	//Mensaje de error si no existe imagen correcta
                     $imageerrors = $this->upload->display_errors();
-					$this->form_validation->set_message('_image_upload', $imageerrors);
+					$this->form_validation->set_message('file', $imageerrors);
 					
 					return false;
                 }
