@@ -25,10 +25,17 @@ class Libro_controller extends CI_Controller {
     */ 
 	public function index()
 	{
-		$data = array(
-		        'libros' => $this->libro->get_libros()
-		);
-		$this->load->view('back/libro/libro_views',$data);
+		if($this->session->userdata('logged_in'))
+        {
+        	$session_data = $this->session->userdata('logged_in');
+            $dat['usuario'] = $session_data['usuario'];
+			$data = array(
+			        'libros' => $this->libro->get_libros()
+			);
+			$this->load->view('back/libro/libro_views',array_merge($data,$dat));
+		}else{
+			redirect('panel', 'refresh');
+		}
 	}
 	/**
 	* Llamo a la vista inse_libro_views
@@ -47,13 +54,13 @@ class Libro_controller extends CI_Controller {
 		$this->form_validation->set_rules('anio', 'Año', 'required|numeric');
 		$this->form_validation->set_rules('stock', 'Stock', 'required|numeric');
 		$this->form_validation->set_rules('stock_minimo', 'Stock Minimo', 'required|numeric');
-		$this->form_validation->set_rules('filename', 'FIl', 'callback__image_upload');
+		$this->form_validation->set_rules('filename', 'Imagen', 'callback__image_upload');
 		
 
 		//Mensaje del form_validation
 		$this->form_validation->set_message('required','<div class="alert alert-danger">El campo %s es obligatorio</div>');
 		$this->form_validation->set_message('numeric','<div class="alert alert-danger">El campo %s debe contener un valor numérico</div>'); 
-		$this->form_validation->set_message('file_selected_test', '<div class="alert alert-danger">Por favor seleccione archivo de imagen</div>');
+		
 		
 		if (!$this->form_validation->run())
 		{
@@ -80,8 +87,9 @@ class Libro_controller extends CI_Controller {
             {
                 // Especifica la configuración para el archivo
                 $config['upload_path'] = './uploads/';
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size'] = '100';
+                $config['allowed_types'] = 'gif|jpg|jpeg|png';
+
+                $config['max_size'] = '2048';
                 $config['max_width']  = '1024';
                 $config['max_height']  = '768';       
  
@@ -113,8 +121,8 @@ class Libro_controller extends CI_Controller {
                 else
                 {
                 	//Mensaje de error si no existe imagen correcta
-                    $imageerrors = $this->upload->display_errors();
-					$this->form_validation->set_message('file', $imageerrors);
+                    $imageerrors = '<div class="alert alert-danger">El campo %s es incorrecta, extención incorrecto o excede el tamaño permitido que es de: 2MB </div>';//$this->upload->display_errors();
+					$this->form_validation->set_message('_image_upload',$imageerrors );
 					
 					return false;
                 }

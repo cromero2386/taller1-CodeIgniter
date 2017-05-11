@@ -35,4 +35,17 @@ Como dije en el día de 05/04/2017 esto puede variar debido a su base_url de su 
 -- Alta de libros que permite insertar una imagen y guarda en la tabla la url de la misma.
 -- Creo la carpeta uploads donde estarán todas las imagenes que se inserten en la tabla.
 -- Formulario alta de libros validado con form_validation
--- En el listado de socio no esta funcional Ver mas y Editar en una próxima actualización va a estar disponible.
+-- Correción mensaje cuando la imagen es mayor a lo permitido o no es la extención.
+-- En el listado de socio no esta funcional Ver mas y Editar en una de las próximas actualizaciones va a estar disponible.
+
+/*
+* Datos Perfil
+*/
+-- Nueva opción en el menú con datos del perfil(No funcional aun)
+-- Cerrar Sesión.
+
+
+PROXIMA FUNCIONALIDAD DISPONIBLE el DÏA VIERNES 12:00hs
+-- Modificación de datos de libros..
+-- Elminación logica de libros y socios..
+-- Logueo teniendo en cuenta el perfil del socio..

@@ -7,7 +7,9 @@
 			</div>
 			<div class="col-sm-10 col-md-10">
 				<div class="well">
-					<h1>Nuevo Libro</h1>					
+					<h1>Nuevo Libro</h1>	
+					<h6> <b>Acepta imagenes gif, jpg, jpeg, png</b></h6>
+					<h6> <b>Tamaño maximo de la imagen 2MB</b></h6>				
 				</div>	            
 				<?php echo form_open_multipart("registro_l", ['class' => 'form-signin', 'role' => 'form']); ?>
 					<div class="form-group">
