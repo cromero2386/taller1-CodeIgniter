@@ -29,25 +29,39 @@ class Socio_controller extends CI_Controller {
 		$this->load->view('back/login_views');
 	}
 	/**
+    * Función que verifica si el usuario esta logueado
+    * @access private    
+    */
+    private function _veri_log()
+    {
+    	if ($this->session->userdata('logged_in')) {
+    		return TRUE;
+    	} else {
+    		return FALSE;
+    	}
+    	
+    }
+	/**
     * Función si existe usuario activo muestra la vista con todos los socios registrados
     * Si no existe sesión me redirige a la  ruta panel
     * @access  public
     */ 
 	public function all()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->_veri_log())
         {
-            $session_data = $this->session->userdata('logged_in');
-            $dat['usuario'] = $session_data['usuario'];
+        	$session_data = $this->session->userdata('logged_in');
+            $dat['usuario'] = $session_data['usuario'];    	
             $data = array(
 		        'socios' => $this->socio->get_socios()
 		    );
+            $this->load->view('partes/head_views');
             $this->load->view('back/socio/socio_views', array_merge($dat, $data));
+            $this->load->view('partes/footer_views');
         }
         else
         {
-            //If no session, redirect to login page
-            redirect('panel', 'refresh');
+           redirect('ingreso', 'refresh');
         }
 		
 	}
@@ -55,7 +69,14 @@ class Socio_controller extends CI_Controller {
 	* Llamo a la vista inse_socio_views
 	*/
 	function form_insert(){
-		$this->load->view('back/socio/inse_socio_views');
+		if($this->_veri_log())
+        {
+        	$session_data = $this->session->userdata('logged_in');
+            $dat['usuario'] = $session_data['usuario'];  
+			$this->load->view('partes/head_views');
+			$this->load->view('back/socio/inse_socio_views', $dat);
+			$this->load->view('partes/footer_views');
+		}
 	}
 	/**
     * Función que llama al insertar datos
@@ -84,7 +105,9 @@ class Socio_controller extends CI_Controller {
 		
 		if ($this->form_validation->run() == FALSE)
 		{
+			$this->load->view('partes/head_views');
 			$this->load->view('back/socio/inse_socio_views');
+			$this->load->view('partes/footer_views');
 		}
 		else
 		{
@@ -121,8 +144,10 @@ class Socio_controller extends CI_Controller {
 					);
 		} else {
 			return FALSE;
-		}		
+		}	
+		$this->load->view('partes/head_views');
 		$this->load->view('back/socio/edit_socio_views',$data);
+		$this->load->view('partes/footer_views');
 	}
 	/**
     * Función editar_socio obtiene los datos de la vista back/edit_socio_views
@@ -157,8 +182,9 @@ class Socio_controller extends CI_Controller {
 		{
 			//Si hay error en algun campo del formulario la clave permanece legible
 			$data['pass'] = $pass;
-
+			$this->load->view('partes/head_views');
 			$this->load->view('back/socio/edit_socio_views',$data);
+			$this->load->view('partes/footer_views');
 		}
 		else
 		{
