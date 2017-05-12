@@ -9,7 +9,7 @@
 	            <div class="well">
 	                <h1>Todos los Libros</h1>
 	            </div>	
-	            <a type="button" class="btn btn-success" href="<?php echo base_url('insert_l'); ?>">Agregar</a>    
+	            <a type="button" class="btn btn-success" href="<?php echo base_url('insert_l'); ?>">Agregar</a>
 	            <table class="table table-bordered">
 	            	<thead>
 	            		<tr>
@@ -31,7 +31,7 @@
 	            			<td><?php echo $row->editorial;  ?></td>
 	            			<td><?php echo $row->stock;  ?></td>
 	            			<td></td>
-	            			<td><a href="#">Editar</a></td>
+	            			<td><a href="<?php echo base_url("libro_edit/$row->id");?>">Editar</a></td>
 	            		</tr>
 	            		<?php } ?>
 	            	</tbody>

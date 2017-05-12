@@ -73,5 +73,7 @@ $route['user_up/(:num)'] = "back/socio_controller/editar_socio/$1";
 $route['libros'] = 'back/libro_controller';
 $route['insert_l'] = 'back/libro_controller/form_insert_l';
 $route['registro_l'] = 'back/libro_controller/insert_libro';
+$route['libro_edit/(:num)'] = "back/libro_controller/edit/$1";
+$route['libro_up/(:num)'] = "back/libro_controller/editar_libro/$1";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

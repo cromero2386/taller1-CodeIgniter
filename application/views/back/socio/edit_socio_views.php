@@ -30,7 +30,7 @@
 						<?php echo form_error('pass'); ?>
 		                <?php echo form_input(['type' => 'text','value'=>"$pass",'name' => 'pass', 'id' => 'pass', 'class' => 'form-control','placeholder' => 'password']); ?>
 		            </div>
-		                <?php echo form_submit('modificar', 'Modificar',"class='btn btn-lg btn-danger btn-block'"); ?>
+		                <?php echo form_submit('modificar', 'Modificar',"class='btn btn-lg btn-warning btn-block'"); ?>
 					<?php echo form_close(); ?>
 	            <div>
 	            		

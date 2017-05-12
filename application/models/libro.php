@@ -43,6 +43,39 @@ Class Libro extends CI_Model
     public function create_libro($data){
         $this->db->insert('libros', $data);
     }
+    /**
+    * Retorna todos los datos de un libro
+    *
+    * @access  public
+    * @param   int($id)
+    * @return  array
+    */
+    function update_libro($id){
+
+        $query = $this->db->get_where('libros', array('id' => $id),1);
+                
+        if($query->num_rows() == 1) {
+            return $query;
+        } else {
+            return FALSE;
+        }
+    }
+    /**
+    * Actualiza los datos de un libro
+    *
+    * @access  public
+    * @param   int($id), array($data)
+    * @return  boolean
+    */
+    function set_libro($id, $data){
+        $this->db->where('id', $id);
+        $query = $this->db->update('libros', $data);
+        if($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 }
 /* End of file libro.php */
 /* Location: ./application/models/libro.php */

@@ -36,16 +36,16 @@ Como dije en el día de 05/04/2017 esto puede variar debido a su base_url de su 
 -- Creo la carpeta uploads donde estarán todas las imagenes que se inserten en la tabla.
 -- Formulario alta de libros validado con form_validation
 -- Correción mensaje cuando la imagen es mayor a lo permitido o no es la extención.
--- En el listado de socio no esta funcional Ver mas y Editar en una de las próximas actualizaciones va a estar disponible.
+-- En el listado de libros no esta funcional Ver mas...
+-- Editar en libros disponible.
 
 /*
 * Datos Perfil
 */
 -- Nueva opción en el menú con datos del perfil(No funcional aun)
--- Cerrar Sesión.
+-- Cerrar Sesión. (Funcional)
 
 
-PROXIMA FUNCIONALIDAD DISPONIBLE el DÏA VIERNES 12:00hs
--- Modificación de datos de libros..
+PROXIMA FUNCIONALIDAD DISPONIBLE el DÏA Lunes 12:00hs
 -- Elminación logica de libros y socios..
 -- Logueo teniendo en cuenta el perfil del socio..
