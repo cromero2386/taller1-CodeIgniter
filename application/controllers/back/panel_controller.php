@@ -31,7 +31,9 @@ class Panel_controller extends CI_Controller {
         {
             $session_data = $this->session->userdata('logged_in');
             $data['usuario'] = $session_data['usuario'];
+            $this->load->view('partes/head_views', $data);
             $this->load->view('back/panel_views', $data);
+            $this->load->view('partes/footer_views');
         }
         else
         {
@@ -47,7 +49,9 @@ class Panel_controller extends CI_Controller {
     {
         $this->session->unset_userdata('logged_in');
         session_destroy();
+        $this->load->view('partes/head_login_views.php');
         $this->load->view('back/login_views');
+        $this->load->view('partes/footer_login_views.php');
     }
  
 }

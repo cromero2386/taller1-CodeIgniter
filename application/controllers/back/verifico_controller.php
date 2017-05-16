@@ -33,7 +33,9 @@ class Verifico_controller extends CI_Controller {
         if($this->form_validation->run() == FALSE)
         {
             //Field validation failed.  User redirected to login page
+            $this->load->view('partes/head_login_views.php');
             $this->load->view('back/login_views');
+            $this->load->view('partes/footer_login_views.php');
         }
         else
         {

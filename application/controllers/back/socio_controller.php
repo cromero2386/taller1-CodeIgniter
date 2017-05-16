@@ -55,7 +55,7 @@ class Socio_controller extends CI_Controller {
             $data = array(
 		        'socios' => $this->socio->get_socios()
 		    );
-            $this->load->view('partes/head_views');
+            $this->load->view('partes/head_views',$dat);
             $this->load->view('back/socio/socio_views', array_merge($dat, $data));
             $this->load->view('partes/footer_views');
         }
@@ -73,7 +73,7 @@ class Socio_controller extends CI_Controller {
         {
         	$session_data = $this->session->userdata('logged_in');
             $dat['usuario'] = $session_data['usuario'];  
-			$this->load->view('partes/head_views');
+			$this->load->view('partes/head_views',$dat);
 			$this->load->view('back/socio/inse_socio_views', $dat);
 			$this->load->view('partes/footer_views');
 		}
@@ -105,9 +105,15 @@ class Socio_controller extends CI_Controller {
 		
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('partes/head_views');
-			$this->load->view('back/socio/inse_socio_views');
-			$this->load->view('partes/footer_views');
+			if($this->_veri_log())
+        	{
+	        	$session_data = $this->session->userdata('logged_in');
+	            $dat['usuario'] = $session_data['usuario'];  
+
+				$this->load->view('partes/head_views',$dat);
+				$this->load->view('back/socio/inse_socio_views');
+				$this->load->view('partes/footer_views');
+			}
 		}
 		else
 		{
@@ -145,9 +151,14 @@ class Socio_controller extends CI_Controller {
 		} else {
 			return FALSE;
 		}	
-		$this->load->view('partes/head_views');
-		$this->load->view('back/socio/edit_socio_views',$data);
-		$this->load->view('partes/footer_views');
+		if($this->_veri_log())
+        {
+        	$session_data = $this->session->userdata('logged_in');
+            $dat['usuario'] = $session_data['usuario'];  
+			$this->load->view('partes/head_views',$dat);
+			$this->load->view('back/socio/edit_socio_views',$data);
+			$this->load->view('partes/footer_views');
+		}
 	}
 	/**
     * Función editar_socio obtiene los datos de la vista back/edit_socio_views
@@ -182,7 +193,7 @@ class Socio_controller extends CI_Controller {
 		{
 			//Si hay error en algun campo del formulario la clave permanece legible
 			$data['pass'] = $pass;
-			$this->load->view('partes/head_views');
+			$this->load->view('partes/head_views',$data);
 			$this->load->view('back/socio/edit_socio_views',$data);
 			$this->load->view('partes/footer_views');
 		}
