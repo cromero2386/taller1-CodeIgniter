@@ -3,6 +3,18 @@
 class Welcome extends CI_Controller {
 
 	/**
+	 * Constructor del Controller
+	 *
+	 * @package     front
+	 * Cargo los modelos necesarios
+	*/ 
+	function __construct() {
+        parent::__construct();
+        $this->load->model('libro');
+
+    }
+
+	/**
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
@@ -19,8 +31,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$data = array(
+			        'libros' => $this->libro->get_libros()
+		);
 		$this->load->view('partes/front/head_views_front');
-		$this->load->view('welcome_message');
+		$this->load->view('welcome_message', $data);
 		$this->load->view('partes/front/footer_views_front');
 	}
 	

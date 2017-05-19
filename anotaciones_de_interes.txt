@@ -38,14 +38,15 @@ Como dije en el día de 05/04/2017 esto puede variar debido a su base_url de su 
 -- Correción mensaje cuando la imagen es mayor a lo permitido o no es la extención.
 -- En el listado de libros no esta funcional Ver mas...
 -- Editar en libros disponible.
+-- Deben agregar un campo elminado del tipo VARCHAR(2) con valor por defecto NO para que ande la eliminació logica.
+-- Si no hay libros eliminados al hacer click en esa opción del menu, lleva a al listado de libros activos.
 
 /*
 * Datos Perfil
 */
 -- Nueva opción en el menú con datos del perfil(No funcional aun)
 -- Cerrar Sesión. (Funcional)
-
-
-PROXIMA FUNCIONALIDAD DISPONIBLE el DÏA Lunes 12:00hs
--- Elminación logica de libros y socios..
--- Logueo teniendo en cuenta el perfil del socio..
+  /*
+  * Front Libros
+  */
+  Listados de libros solamenten sin funcionalidad de prestamos y mas datos.

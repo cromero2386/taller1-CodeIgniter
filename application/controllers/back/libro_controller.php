@@ -269,60 +269,7 @@ class Libro_controller extends CI_Controller {
 	* Si el campo imagen se encuentra vacio asume que la imagen no fue moficado.
 	* En la tabla guarda la URL de donde se encuentra la imagen.
 	*/
-	/*function _image_modif()
-	{
-		//Cargo la libreria para subir archivos
-		$this->load->library('upload');
-		// Obtengo el id del libro
-		$id = $this->uri->segment(2);
-        // Array de datos para obtener datos de libros sin la imagen 
-		$dat = array(
-			'titulo'=>$this->input->post('titulo',true),
-			'edicion'=>$this->input->post('edicion',true),
-			'editorial'=>$this->input->post('editorial',true),
-			'anio'=>$this->input->post('anio',true),
-			'stock'=>$this->input->post('stock',true),
-			'stock_minimo'=>$this->input->post('stock_minimo',true)
-		);
-		// Si la iamgen esta vacia se asume que no se modifica
-        if (!empty($_FILES['filename']['name']))
-		{            
-                // Especifica la configuración para el archivo
-                $config['upload_path'] = 'uploads/';
-                $config['allowed_types'] = 'gif|jpg|jpeg|png';
-
-                $config['max_size'] = '2048';
-                $config['max_width']  = '1024';
-                $config['max_height']  = '768';       
- 
-                // Inicializa la configuración para el archivo 
-                $this->upload->initialize($config);
-                 
-                if ($this->upload->do_upload('filename'))
-                {
-                	// Mueve archivo a la carpeta indicada en la variable $data
-                    $data = $this->upload->data();
-                    // Path donde guarda el archivo..
-                    $url ="uploads/".$_FILES['filename']['name'];
-                 	// Agrego la imagen si se modifico.  
-					$dat['imagen']=$url;
-					// Actualiza datos del libro
-					$this->libro->set_libro($id, $dat);
-					redirect('libros', 'refresh');
-                }
-                else
-                {
-                	//Mensaje de error si no existe imagen correcta
-                    $imageerrors = '<div class="alert alert-danger">El campo %s es incorrecta, extención incorrecto o excede el tamaño permitido que es de: 2MB </div>';
-                    $this->form_validation->set_message('_image_modif',$imageerrors );
-					return false;
-                } 
-        }else{
-        	
-            $this->libro->set_libro($id, $dat);
-			redirect('libros', 'refresh');
-		}
-    }*/
+	
     function _image_modif()
     {
 		//Cargo la libreria para subir archivos
@@ -338,7 +285,7 @@ class Libro_controller extends CI_Controller {
     		'stock'=>$this->input->post('stock',true),
     		'stock_minimo'=>$this->input->post('stock_minimo',true)
     		);
-	// Si la iamgen esta vacia se asume que no se modifica
+		// Si la iamgen esta vacia se asume que no se modifica
     	if (!empty($_FILES['filename']['name']))
     	{            
                 // Especifica la configuración para el archivo
@@ -377,6 +324,57 @@ class Libro_controller extends CI_Controller {
     		redirect('libros', 'refresh');
     	}
     }
+    /**
+	* Obtiene los datos del libro a eliminar
+	*/
+    function remove_libro(){
+    	$id = $this->uri->segment(2);
+        // Array de datos para obtener datos de libros sin la imagen 
+    	$data = array(
+    		'eliminado'=>'SI'
+    		);
+    	$this->libro->estado_libro($id, $data);
+    	redirect('libros', 'refresh');
+    }
+    /**
+	* Obtiene los datos del libro a activar
+	*/
+    function active_libro(){
+    	$id = $this->uri->segment(2);
+        // Array de datos para obtener datos de libros sin la imagen 
+    	$data = array(
+    		'eliminado'=>'NO'
+    		);
+    	$this->libro->estado_libro($id, $data);
+    	redirect('libros', 'refresh');
+    }
+    /**
+	* Libros eliminado logicamente
+	*/
+    function disabled_libros(){    	
+    	
+    	if($this->_veri_log())
+        {
+        	$session_data = $this->session->userdata('logged_in');
+            $dat['usuario'] = $session_data['usuario'];    		
+			
+			if (!$this->libro->not_active_libros()) {
+				redirect('libros', 'refresh');
+			} else {
+				$data = array(
+			        'libros' => $this->libro->not_active_libros()
+				);
+				$this->load->view('partes/back/head_views',$dat);
+				$this->load->view('back/libro/libro_d_views',array_merge($data,$dat));
+				$this->load->view('partes/back/footer_views');
+			}
+			
+			
+		}else{
+			redirect('ingreso', 'refresh');
+		}
+    }
+
 }
 /* End of file libro_controller.php */
 /* Location: ./application/controllers/back/usuario_controller.php */

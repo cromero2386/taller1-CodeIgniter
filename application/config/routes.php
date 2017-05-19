@@ -75,5 +75,8 @@ $route['insert_l'] = 'back/libro_controller/form_insert_l';
 $route['registro_l'] = 'back/libro_controller/insert_libro';
 $route['libro_edit/(:num)'] = "back/libro_controller/edit/$1";
 $route['libro_up/(:num)'] = "back/libro_controller/editar_libro/$1";
+$route['remove_libro/(:num)'] = "back/libro_controller/remove_libro/$1";
+$route['libro_disabled'] = "back/libro_controller/disabled_libros";
+$route['activar_libro/(:num)'] = "back/libro_controller/active_libro/$1";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

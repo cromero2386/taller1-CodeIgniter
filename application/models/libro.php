@@ -25,7 +25,7 @@ Class Libro extends CI_Model
     */
     function get_libros()
     {
-        $query = $this->db->get("libros");
+        $query = $this->db->get_where("libros", array('eliminado' => 'NO'));
         
         if($query->num_rows()>0) {
             return $query;
@@ -75,6 +75,38 @@ Class Libro extends CI_Model
         } else {
             return FALSE;
         }
+    }
+    /**
+    * Eliminación y activación logica de un libro
+    *
+    * @access  public
+    * @param   int($id), array($data)
+    * @return  boolean
+    */
+    function estado_libro($id, $data){
+        $this->db->where('id', $id);
+        $query = $this->db->update('libros', $data);
+        if($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    /**
+    * Retorna todos los libros inactivos
+    *
+    * @access  public
+    * @param   No recibe
+    * @return  array
+    */
+    function not_active_libros()
+    {
+        $query = $this->db->get_where("libros", array('eliminado' => 'SI'));
+        if($query->num_rows()>0) {
+            return $query;
+        } else {
+            return FALSE;
+        }        
     }
 }
 /* End of file libro.php */

@@ -46,7 +46,7 @@
 									</tr>
 									<tr>
 										<td>
-											<a href="#">Prestados</a>
+											<a href="<?php echo base_url('libro_disabled'); ?>">Eliminados</a>
 										</td>
 									</tr>
 									<tr>

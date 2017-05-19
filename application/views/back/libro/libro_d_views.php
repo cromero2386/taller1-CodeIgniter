@@ -1,9 +1,8 @@
 
 <div class="col-sm-10 col-md-10">
 	<div class="well">
-		<h1>Todos los Libros</h1>
+		<h1>Libros eliminados</h1>
 	</div>	
-	<a type="button" class="btn btn-success" href="<?php echo base_url('insert_l'); ?>">Agregar</a>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -13,7 +12,7 @@
 				<th>Editorial</th>
 				<th>Stock</th>
 				<th>Eliminado</th>
-				<th>Editar</th>
+				<th>Activar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,7 +24,7 @@
 				<td><?php echo $row->editorial;  ?></td>
 				<td><?php echo $row->stock;  ?></td>
 				<td><?php echo $row->eliminado;  ?></td>
-				<td><a href="<?php echo base_url("libro_edit/$row->id");?>">Editar</a>|<a href="<?php echo base_url("remove_libro/$row->id");?>">Eliminar</a></td>
+				<td><a href="<?php echo base_url("activar_libro/$row->id");?>">Activar</a></td>
 			</tr>
 			<?php } ?>
 		</tbody>
