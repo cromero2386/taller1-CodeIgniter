@@ -26,7 +26,9 @@ class Socio_controller extends CI_Controller {
     */ 
 	public function index()
 	{
+		$this->load->view('partes/head_login_views.php');
 		$this->load->view('back/login_views');
+		$this->load->view('partes/footer_login_views.php');
 	}
 	/**
     * Función que verifica si el usuario esta logueado
