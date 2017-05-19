@@ -26,9 +26,9 @@ class Socio_controller extends CI_Controller {
     */ 
 	public function index()
 	{
-		$this->load->view('partes/head_login_views.php');
+		$this->load->view('partes/login/head_login_views.php');
 		$this->load->view('back/login_views');
-		$this->load->view('partes/footer_login_views.php');
+		$this->load->view('partes/login/footer_login_views.php');
 	}
 	/**
     * Función que verifica si el usuario esta logueado
@@ -57,9 +57,9 @@ class Socio_controller extends CI_Controller {
             $data = array(
 		        'socios' => $this->socio->get_socios()
 		    );
-            $this->load->view('partes/head_views',$dat);
+            $this->load->view('partes/back/head_views',$dat);
             $this->load->view('back/socio/socio_views', array_merge($dat, $data));
-            $this->load->view('partes/footer_views');
+            $this->load->view('partes/back/footer_views');
         }
         else
         {
@@ -75,9 +75,9 @@ class Socio_controller extends CI_Controller {
         {
         	$session_data = $this->session->userdata('logged_in');
             $dat['usuario'] = $session_data['usuario'];  
-			$this->load->view('partes/head_views',$dat);
+			$this->load->view('partes/back/head_views',$dat);
 			$this->load->view('back/socio/inse_socio_views', $dat);
-			$this->load->view('partes/footer_views');
+			$this->load->view('partes/back/footer_views');
 		}
 	}
 	/**
@@ -112,9 +112,9 @@ class Socio_controller extends CI_Controller {
 	        	$session_data = $this->session->userdata('logged_in');
 	            $dat['usuario'] = $session_data['usuario'];  
 
-				$this->load->view('partes/head_views',$dat);
+				$this->load->view('partes/back/head_views',$dat);
 				$this->load->view('back/socio/inse_socio_views');
-				$this->load->view('partes/footer_views');
+				$this->load->view('partes/back/footer_views');
 			}
 		}
 		else
@@ -157,13 +157,13 @@ class Socio_controller extends CI_Controller {
         {
         	$session_data = $this->session->userdata('logged_in');
             $dat['usuario'] = $session_data['usuario'];  
-			$this->load->view('partes/head_views',$dat);
+			$this->load->view('partes/back/head_views',$dat);
 			$this->load->view('back/socio/edit_socio_views',$data);
-			$this->load->view('partes/footer_views');
+			$this->load->view('partes/back/footer_views');
 		}
 	}
 	/**
-    * Función editar_socio obtiene los datos de la vista back/edit_socio_views
+    * Función editar_socio obtiene los datos de la vista back/editback/_socio_views
     * y ejecuta el metodo para actualizar los datos del socio, si es correcto la actualización
     * Valido formulario
     * redirige a la ruta mis datos
@@ -195,9 +195,9 @@ class Socio_controller extends CI_Controller {
 		{
 			//Si hay error en algun campo del formulario la clave permanece legible
 			$data['pass'] = $pass;
-			$this->load->view('partes/head_views',$data);
+			$this->load->view('partes/back/head_views',$data);
 			$this->load->view('back/socio/edit_socio_views',$data);
-			$this->load->view('partes/footer_views');
+			$this->load->view('partes/back/footer_views');
 		}
 		else
 		{

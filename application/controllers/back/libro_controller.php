@@ -45,9 +45,9 @@ class Libro_controller extends CI_Controller {
 			$data = array(
 			        'libros' => $this->libro->get_libros()
 			);
-			$this->load->view('partes/head_views',$dat);
+			$this->load->view('partes/back/head_views',$dat);
 			$this->load->view('back/libro/libro_views',array_merge($data,$dat));
-			$this->load->view('partes/footer_views');
+			$this->load->view('partes/back/footer_views');
 		}else{
 			redirect('ingreso', 'refresh');
 		}
@@ -60,9 +60,9 @@ class Libro_controller extends CI_Controller {
         {
         	$session_data = $this->session->userdata('logged_in');
             $dat['usuario'] = $session_data['usuario'];
-            $this->load->view('partes/head_views',$dat);
+            $this->load->view('partes/back/head_views',$dat);
 			$this->load->view('back/libro/inse_libro_views',$dat);
-			$this->load->view('partes/footer_views');
+			$this->load->view('partes/back/footer_views');
 		}else{
 			redirect('ingreso', 'refresh');
 		}
@@ -92,9 +92,9 @@ class Libro_controller extends CI_Controller {
         	{
 	        	$session_data = $this->session->userdata('logged_in');
 	            $dat['usuario'] = $session_data['usuario'];   
-	            $this->load->view('partes/head_views',$dat);
+	            $this->load->view('partes/back/head_views',$dat);
 				$this->load->view('back/libro/inse_libro_views', $dat);
-				$this->load->view('partes/footer_views');
+				$this->load->view('partes/back/footer_views');
 			}else{
 				redirect('ingreso', 'refresh');
 			}
@@ -199,9 +199,9 @@ class Libro_controller extends CI_Controller {
 	    	$session_data = $this->session->userdata('logged_in');
 	        $dat['usuario'] = $session_data['usuario']; 
 	        
-	        $this->load->view('partes/head_views', $dat);  
+	        $this->load->view('partes/back/head_views', $dat);  
 			$this->load->view('back/libro/edit_libro_views',array_merge($data,$dat));
-			$this->load->view('partes/footer_views');
+			$this->load->view('partes/back/footer_views');
 		}else{
 			redirect('ingreso', 'refresh');
 		}
@@ -236,9 +236,9 @@ class Libro_controller extends CI_Controller {
         	{
 	        	$session_data = $this->session->userdata('logged_in');
 	            $dat['usuario'] = $session_data['usuario'];
-	            $this->load->view('partes/head_views', $dat);
+	            $this->load->view('partes/back/head_views', $dat);
 				$this->load->view('back/libro/edit_libro_views', $dat);
-				$this->load->view('partes/footer_views');
+				$this->load->view('partes/back/footer_views');
 			}else{
 				redirect('ingreso', 'refresh');
 			}
