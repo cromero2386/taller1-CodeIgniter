@@ -18,6 +18,7 @@ class Socio_controller extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('socio');
+        $this->load->model('perfil');
     }
 
     /**
@@ -75,8 +76,9 @@ class Socio_controller extends CI_Controller {
         {
         	$session_data = $this->session->userdata('logged_in');
             $dat['usuario'] = $session_data['usuario'];  
+            $data['perfiles'] = $this->perfil->get_perfiles();            
 			$this->load->view('partes/back/head_views',$dat);
-			$this->load->view('back/socio/inse_socio_views', $dat);
+			$this->load->view('back/socio/inse_socio_views', $data);
 			$this->load->view('partes/back/footer_views');
 		}
 	}
@@ -91,34 +93,34 @@ class Socio_controller extends CI_Controller {
 		$this->form_validation->set_rules('dias_prestamos', 'Dias Prestados', 'required|numeric');
 		$this->form_validation->set_rules('usuario', 'Usuario', 'required');
 		$this->form_validation->set_rules('pass', 'Password', 'required');
-
+		$this->form_validation->set_rules('tipo_socio', 'Perfil Socio', 'required');
 		//Mensaje del form_validation
 		$this->form_validation->set_message('required','<div class="alert alert-danger">El campo %s es obligatorio</div>');     
 		$this->form_validation->set_message('numeric','<div class="alert alert-danger">El campo %s debe contener un valor numérico</div>');           
 
-		$pass = $this->input->post('pass',true);
-		$data = array(
-			'nombre'=>$this->input->post('nombre',true),
-			'apellido'=>$this->input->post('apellido',true),
-			'dias_prestamos'=>$this->input->post('dias_prestamos',true),
-			'usuario'=>$this->input->post('usuario',true),
-			'pass'=>base64_encode($pass)
-			);
-		
 		if ($this->form_validation->run() == FALSE)
 		{
 			if($this->_veri_log())
         	{
 	        	$session_data = $this->session->userdata('logged_in');
 	            $dat['usuario'] = $session_data['usuario'];  
-
+	            $perfil['perfiles'] = $this->perfil->get_perfiles();
 				$this->load->view('partes/back/head_views',$dat);
-				$this->load->view('back/socio/inse_socio_views');
+				$this->load->view('back/socio/inse_socio_views',$perfil);
 				$this->load->view('partes/back/footer_views');
 			}
 		}
 		else
 		{
+			$pass = $this->input->post('pass',true);
+			$data = array(
+				'nombre'=>$this->input->post('nombre',true),
+				'apellido'=>$this->input->post('apellido',true),
+				'dias_prestamos'=>$this->input->post('dias_prestamos',true),
+				'usuario'=>$this->input->post('usuario',true),
+				'pass'=>base64_encode($pass),
+				'perfil_id'=>$this->input->post('tipo_socio',true)
+			);
 			//Envio array el metodo insert para registro de datos
 			$datos_socios = $this->socio->create_socio($data);
 			redirect('datos', 'refresh');
@@ -139,9 +141,9 @@ class Socio_controller extends CI_Controller {
 				$dias_prestamos = $row->dias_prestamos;
 				$usuario = $row->usuario;
 				$pass = base64_decode($row->pass);
-
-
+				
 			}
+			
 			$data = array('socio' =>$datos_socios,
 						  'id'=>$id,
 						  'nombre'=>$nombre,
@@ -157,8 +159,9 @@ class Socio_controller extends CI_Controller {
         {
         	$session_data = $this->session->userdata('logged_in');
             $dat['usuario'] = $session_data['usuario'];  
+            $perfil['perfiles'] = $this->perfil->get_perfiles(); 
 			$this->load->view('partes/back/head_views',$dat);
-			$this->load->view('back/socio/edit_socio_views',$data);
+			$this->load->view('back/socio/edit_socio_views',array_merge($data,$perfil));
 			$this->load->view('partes/back/footer_views');
 		}
 	}
@@ -176,6 +179,7 @@ class Socio_controller extends CI_Controller {
 		$this->form_validation->set_rules('dias_prestamos', 'Dias Prestados', 'required|numeric');
 		$this->form_validation->set_rules('usuario', 'Usuario', 'required');
 		$this->form_validation->set_rules('pass', 'Password', 'required');
+		$this->form_validation->set_rules('tipo_socio', 'Perfil Socio', 'required');
 
 		//Mensaje del form_validation
 		$this->form_validation->set_message('required','<div class="alert alert-danger">El campo %s es obligatorio</div>');    
@@ -188,15 +192,17 @@ class Socio_controller extends CI_Controller {
 			'nombre'=>$this->input->post('nombre',true),
 			'apellido'=>$this->input->post('apellido',true),
 			'dias_prestamos'=>$this->input->post('dias_prestamos',true),
-			'usuario'=>$this->input->post('usuario',true)
+			'usuario'=>$this->input->post('usuario',true),
+			'perfil_id'=>$this->input->post('tipo_socio',true)
 			);
 		
 		if ($this->form_validation->run() == FALSE)
 		{
 			//Si hay error en algun campo del formulario la clave permanece legible
 			$data['pass'] = $pass;
+			$perfil['perfiles'] = $this->perfil->get_perfiles();
 			$this->load->view('partes/back/head_views',$data);
-			$this->load->view('back/socio/edit_socio_views',$data);
+			$this->load->view('back/socio/edit_socio_views',array_merge($data,$perfil));
 			$this->load->view('partes/back/footer_views');
 		}
 		else

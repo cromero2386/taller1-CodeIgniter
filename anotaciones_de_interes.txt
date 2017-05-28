@@ -40,6 +40,29 @@ Como dije en el día de 05/04/2017 esto puede variar debido a su base_url de su 
 -- Editar en libros disponible.
 -- Deben agregar un campo elminado del tipo VARCHAR(2) con valor por defecto NO para que ande la eliminació logica.
 -- Si no hay libros eliminados al hacer click en esa opción del menu, lleva a al listado de libros activos.
+/*
+*Se Agrega SELECT de HTML dinamico obteniendo datos de la base de datos, esto se ve en socio donde al 
+*dar de alta un socio ahora tengo la posibilidad de seleccionar de que tipo es el socio, para ser esto 
+*se agrega un campo select en el formulario de alta y edición de socio, tambien se agrega un campo en 
+*la tabla socio y se crea una tabla perfil y una relacion socio-perfil
+*/
+--para crear la tabla perfiles de socio ejecutar el siguiente codigo en la pestaña sql de phpmyadmin
+
+CREATE TABLE perfiles(
+ 	id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(30) NOT NULL,
+    PRIMARY KEY(id)
+);
+--una vez creado la tabla agrego un registro que será alumno ejecuto en la pestaña sql de phpmyadmin
+
+INSERT INTO perfiles (nombre) VALUES('Alumno');
+
+--Creo una columna perfil_id en la tabla socios con valor por defecto 1
+
+ALTER TABLE socios ADD COLUMN perfil_id INT NOT NULL DEFAULT '1';
+
+--Se creo el modelo perfil donde se encuentra la funcion get_perfiles que obtiene todos los perfiles registrados y se usa en socio_controller
+
 
 /*
 * Datos Perfil

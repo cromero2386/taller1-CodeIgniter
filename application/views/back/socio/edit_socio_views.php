@@ -24,6 +24,10 @@
 		<?php echo form_error('pass'); ?>
 		<?php echo form_input(['type' => 'text','value'=>"$pass",'name' => 'pass', 'id' => 'pass', 'class' => 'form-control','placeholder' => 'password']); ?>
 	</div>
+	<div class="form-group">
+		<?php echo form_error('tipo_socio'); ?>
+		<?php echo form_dropdown('tipo_socio', $perfiles,'', 'class="form-control"') ?>
+	</div>
 	<?php echo form_submit('modificar', 'Modificar',"class='btn btn-lg btn-warning btn-block'"); ?>
 	<?php echo form_close(); ?>
 	<div>
