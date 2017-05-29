@@ -11,6 +11,7 @@ class Welcome extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('libro');
+        $this->load->model('socio');
 
     }
 
@@ -38,7 +39,37 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message', $data);
 		$this->load->view('partes/front/footer_views_front');
 	}
-	
+	/*
+	* Función que verifica si los datos son enviados por AJAX
+	* Envia al modelo socio para verificar si existe el usuario.
+	*/
+
+	function valid_login_ajax(){
+    //verificamos si la petición es via ajax
+		if($this->input->is_ajax_request()){
+
+			if($this->input->post('usuario')!==''){
+				$usuario = $this->input->post('usuario');
+				$pass = $this->input->post('pass'); 
+				$this->socio->valid_user_ajax($usuario, $pass);  
+				$sess_array = array(
+                    'usuario' => $usuario
+                );
+                $this->session->set_userdata('logged_in', $sess_array);
+			}
+		}else{
+			//redirect('default_controller');
+		}
+
+    } // fin del método valid_login_ajax
+    /*
+    * Cierra sesión del home
+    */
+	function logout_ajax()
+    {        
+    	 $this->session->sess_destroy(); 
+    	 redirect('');
+    }
 }
 
 /* End of file welcome.php */

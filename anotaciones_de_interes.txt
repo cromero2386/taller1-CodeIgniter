@@ -63,6 +63,16 @@ ALTER TABLE socios ADD COLUMN perfil_id INT NOT NULL DEFAULT '1';
 
 --Se creo el modelo perfil donde se encuentra la funcion get_perfiles que obtiene todos los perfiles registrados y se usa en socio_controller
 
+/*
+*Login modal bootstrap con AJAX*
+*/
+--Se creo un metodo llamado valid_user_ajax que recibe dos parametros usuario y pass, este metodo se encuentra en el modelo socio.
+--Se agrega en el controller welcome un función que se llama valid_login_ajax() que verifica si la petición es ajax.
+-- Se agrega en welcome un logout ajax.
+-- Al pie del footer_views_fron se agrega el codigo Jquery necesario para el logueo..
+-- En el head_views_front se agrega dos li uno para el boton cerrar sesion que permanece oculto y uno para mostrar si el usuario si el logeo es correcto o error en caso contrario.
+
+VERIFICAR SI YENDO A OTRO ENLACE NO SE PIERDE LA SESSION PORQUE ALCTUALMENTE SOLO QUEDA EN EL HOME PORQUE NO HAY OTRO FRONT CREADO...
 
 /*
 * Datos Perfil

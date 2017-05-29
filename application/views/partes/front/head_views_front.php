@@ -50,7 +50,14 @@
                         <a href="#">Libros</a>
                     </li>
                     <li>
-                        <a href="#">#</a>
+                        <a class="login" href="#" data-toggle="modal" data-target=".forget-modal">Iniciar sesión</a>
+                       
+                    </li>
+                    <li>
+                        <a class="logout" href="<?php echo base_url('logout_ajax');?>">Cerrar Sesión</a>
+                    </li>
+                    <li>
+                         <a id="msg_username"></a>
                     </li>
                 </ul>
             </div>
@@ -58,3 +65,29 @@
         </div>
         <!-- /.container -->
     </nav>
+    <div class="modal fade forget-modal" tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">Iniciar sesión</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
+                        <div class="form-group">
+                            <label for="usuario" class="sr-only">Usuario</label>
+                            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass" class="sr-only">Contraseña</label>
+                            <input type="password" name="pass" id="pass" class="form-control" placeholder="Contraseña">
+                        </div>
+                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Iniciar" data-dismiss="modal">
+                    </form>
+                </div>
+            </div> <!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->

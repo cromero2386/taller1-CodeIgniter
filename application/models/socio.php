@@ -37,6 +37,24 @@ Class Socio extends CI_Model
         }
     }
     /**
+    * Retorna el nombre del usuario
+    *
+    * @access  public
+    * @param   string ($usuario, $pass)
+    * @return  dato
+    */
+    function valid_user_ajax($usuario, $pass){
+          
+        $query = $this->db->get_where('socios', array('usuario'=>$usuario,'pass'=>base64_encode($pass)));
+        
+        if($query->num_rows() >0){
+            foreach($query->result() as $row){
+                 $datos=$row->nombre;
+            }
+            echo $datos;
+        }
+    }
+    /**
     * Retorna todos los socios registrados
     *
     * @access  public

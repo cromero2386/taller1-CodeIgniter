@@ -38,6 +38,8 @@
 | Views por defecto(default_controller)
 */
 $route['default_controller'] = "welcome";
+$route['login_ajax'] = "welcome/valid_login_ajax";
+$route['logout_ajax'] = "welcome/logout_ajax";
 /*
 * Rutas para tratamiento de usuarios para ingreso y cierre de sesión.
 * Verifico user  y pass (verifico)
