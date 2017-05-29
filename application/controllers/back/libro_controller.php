@@ -72,13 +72,13 @@ class Libro_controller extends CI_Controller {
 	*/
 	function insert_libro(){
 		//Validación del formulario
-		$this->form_validation->set_rules('title', 'Titulo', 'required');
+		$this->form_validation->set_rules('titulo', 'Titulo', 'required');
 		$this->form_validation->set_rules('edicion', 'Edicion', 'required');
 		$this->form_validation->set_rules('editorial', 'Editorial', 'required');
 		$this->form_validation->set_rules('anio', 'Año', 'required|numeric');
 		$this->form_validation->set_rules('stock', 'Stock', 'required|numeric');
 		$this->form_validation->set_rules('stock_minimo', 'Stock Minimo', 'required|numeric');
-		$this->form_validation->set_rules('filename', 'Imagen', 'callback__image_upload');
+		$this->form_validation->set_rules('filename', 'Imagen', 'required|callback__image_upload');
 		
 
 		//Mensaje del form_validation
@@ -152,6 +152,7 @@ class Libro_controller extends CI_Controller {
                 }
                 else
                 {
+
                 	//Mensaje de error si no existe imagen correcta
                     $imageerrors = '<div class="alert alert-danger">El campo %s es incorrecta, extención incorrecto o excede el tamaño permitido que es de: 2MB </div>';//$this->upload->display_errors();
 					$this->form_validation->set_message('_image_upload',$imageerrors );
@@ -159,6 +160,10 @@ class Libro_controller extends CI_Controller {
 					return false;
                 }
  
+            }else{
+            	redirect('registro_l', 'refresh');
+            	
+		        	
             }
 	
 	}
