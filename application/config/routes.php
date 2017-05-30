@@ -40,6 +40,8 @@
 $route['default_controller'] = "welcome";
 $route['login_ajax'] = "welcome/valid_login_ajax";
 $route['logout_ajax'] = "welcome/logout_ajax";
+$route['libros_front'] = "welcome/libro";
+$route['404_override'] = "welcome/error_404";
 /*
 * Rutas para tratamiento de usuarios para ingreso y cierre de sesión.
 * Verifico user  y pass (verifico)
@@ -52,7 +54,7 @@ $route['verifico'] = "back/verifico_controller";
 $route['ingreso'] = "back/socio_controller";
 $route['panel'] = "back/panel_controller";
 $route['logout'] = 'back/panel_controller/logout';
-$route['404_override'] = '';
+
 /*
 * Rutas para tratamiento de socios
 * Views a los datos de los socios(datos)

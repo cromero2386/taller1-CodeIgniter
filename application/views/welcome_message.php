@@ -12,39 +12,15 @@
 
 <!-- Page Features -->
 <div class="row text-center">
-<?php foreach($libros->result() as $row){ ?>
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="<?php echo base_url($row->imagen); ?>" alt="">
-			<div class="caption">
-				<h4><?php echo trim($row->titulo); ?></h4>
-				<p>Cantidad disponible: <?php echo $row->stock; ?></p>
-				<p>
-					<?php 
-						if ($row->stock < $row->stock_minimo && $row->stock > 0) {
-							echo 'por debajo del valor minimo: '.$row->stock_minimo;
-						} elseif ($row->stock == 0) {
-							echo 'No hay libros disponibles';
-						}else {
-							echo 'Disponible:'.$row->stock.' unidades';
-						}
-					?>
-				</p>
-				<p>
-				<?php 
-					if ($row->stock > 0) {
-						echo "<a href='#' class='btn btn-primary'>Solicitar prestamo</a>";
-						echo "<a href='#' class='btn btn-default'>Más Datos</a>";
-					}else{
-						echo "<a href='#' class='btn btn-default'>Mas Datos</a>";
-					}
-					?>	
-				</p>
-			</div>
-		</div>
+	<div class="col-md-12 col-sm-12 hero-feature">
+		<p class="text-justify">
+			Un libro (del latín liber, libri) es una obra impresa, manuscrita o pintada en una serie de hojas de papel, pergamino, vitela u otro material, unidas por un lado (es decir, encuadernadas) y protegidas con tapas, también llamadas cubiertas. Un libro puede tratar sobre cualquier tema. <br>
+
+			Según la definición de la Unesco,1 un libro debe poseer 49 o más páginas (25 hojas o más), pues desde cinco hasta 48 páginas sería un folleto (desde tres hasta 24 hojas), y desde una hasta cuatro páginas se consideran hojas sueltas (en una o dos hojas). <br>
+
+			También se llama "libro" a una obra de gran extensión publicada en varias unidades independientes, llamados "tomos" o "volúmenes". Otras veces se llama también "libro" a cada una de las partes de una obra, aunque físicamente se publiquen todas en un mismo volumen (ejemplo: Libros de la Biblia).
+		</p>
 	</div>
-<?php } ?>
-	
 </div>
 <!-- /.row -->
 

@@ -48,10 +48,9 @@ Class Socio extends CI_Model
         $query = $this->db->get_where('socios', array('usuario'=>$usuario,'pass'=>base64_encode($pass)));
         
         if($query->num_rows() >0){
-            foreach($query->result() as $row){
-                 $datos=$row->nombre;
-            }
-            echo $datos;
+            return $query->row();
+        }else{
+            echo 'error';
         }
     }
     /**

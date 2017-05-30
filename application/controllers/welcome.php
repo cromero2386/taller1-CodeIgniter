@@ -8,13 +8,14 @@ class Welcome extends CI_Controller {
 	 * @package     front
 	 * Cargo los modelos necesarios
 	*/ 
-	function __construct() {
+	function __construct()
+	{
         parent::__construct();
         $this->load->model('libro');
         $this->load->model('socio');
 
     }
-
+    
 	/**
 	 * Index Page for this controller.
 	 *
@@ -32,44 +33,66 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->load->view('partes/front/head_views_front');
+		$this->load->view('welcome_message');
+		$this->load->view('partes/front/footer_views_front');
+	}
+
+	/*
+    * Carga todos los libros disponibles
+    *
+    */
+    function libro()
+    {
+    	
 		$data = array(
 			        'libros' => $this->libro->get_libros()
 		);
 		$this->load->view('partes/front/head_views_front');
-		$this->load->view('welcome_message', $data);
+		$this->load->view('libros_views', $data);
 		$this->load->view('partes/front/footer_views_front');
-	}
+		
+    }
+
 	/*
 	* Función que verifica si los datos son enviados por AJAX
 	* Envia al modelo socio para verificar si existe el usuario.
 	*/
 
-	function valid_login_ajax(){
+	function valid_login_ajax()
+	{
     //verificamos si la petición es via ajax
 		if($this->input->is_ajax_request()){
 
 			if($this->input->post('usuario')!==''){
 				$usuario = $this->input->post('usuario');
 				$pass = $this->input->post('pass'); 
-				$this->socio->valid_user_ajax($usuario, $pass);  
-				$sess_array = array(
-                    'usuario' => $usuario
-                );
-                $this->session->set_userdata('logged_in', $sess_array);
+				$result = $this->socio->valid_user_ajax($usuario, $pass);  
+				if ($result) {
+					$data=[
+						"id"=> $result->id,
+						"nombre"=> $result->nombre,
+						"login_ajax"=> TRUE
+					];
+					$this->session->set_userdata($data);
+				} else {
+					echo 'error';
+				}
+			}else{
+				echo 'error';
 			}
-		}else{
-			//redirect('default_controller');
 		}
-
     } // fin del método valid_login_ajax
     /*
-    * Cierra sesión del home
+    * Cierra sesión de ajax
     */
 	function logout_ajax()
     {        
-    	 $this->session->sess_destroy(); 
-    	 redirect('');
+    	$this->session->unset_userdata('login_ajax');
+        session_destroy();
+    	redirect('');
     }
+    
 }
 
 /* End of file welcome.php */

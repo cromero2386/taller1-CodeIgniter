@@ -38,27 +38,36 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Biblioteca</a>
+                <a class="navbar-brand" href="<?php echo base_url(); ?>">Biblioteca</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Inicio</a>
+                        <a href="<?php echo base_url(); ?>">Inicio</a>
                     </li>
                     <li>
-                        <a href="#">Libros</a>
-                    </li>
-                    <li>
-                        <a class="login" href="#" data-toggle="modal" data-target=".forget-modal">Iniciar sesión</a>
-                       
-                    </li>
-                    <li>
-                        <a class="logout" href="<?php echo base_url('logout_ajax');?>">Cerrar Sesión</a>
+                        <a href="<?php echo base_url('libros_front');?>">Libros</a>
                     </li>
                     <li>
                          <a id="msg_username"></a>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <?php if($this->session->userdata('login_ajax') != "TRUE"){ ?>
+                    <div class="btn-group btn-posicion">
+                        <a class="btn btn-primary" role="button" data-toggle="modal" data-target=".forget-modal">Iniciar sesión</a>
+                    </div>
+                    <?php }else{?>
+                    <li class="dropdown" id="sesion">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido 
+                        <?= $this->session->userdata('nombre')?><b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="#"><a type="button" href="<?php echo base_url('logout_ajax') ?>" role="button">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                    <?php }?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

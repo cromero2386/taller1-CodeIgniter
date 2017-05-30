@@ -2,7 +2,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Taller I</p>
+                    <p>Copyright &copy; Taller I, Lic. Romero, Carlos Alberto</p>
                 </div>
             </div>
         </footer>
@@ -15,7 +15,7 @@
     <script type="text/javascript">
         //Codigo para login ajax
         $(document).ready(function(){
-            $(".logout").hide(); //Al inciar mi sitio el cerrar sesión se oculta
+            //$(".navbar-right").hide(); //Al inciar mi sitio el cerrar sesión se oculta
             $('#btn-login').click(function(){ 
                 //Caputuro datos de los input       
                 var usuario = $('#usuario').val();
@@ -27,14 +27,13 @@
                     type: 'POST',             //Metodo de envio
                     data: info, //array con el usuario y pass
                     success: function(msg){  //si es correcto la acción
-                        if(! msg){ //si no me devuelve usuario no hay en la base de datos
-                            $(".login").show(); //muestro inicio de sesión
+                        if (msg === "error") {
                             $('#msg_username').html('Datos incorrectos, verifique!!!').css('color','red'); //Muestros el mje de datos incorrectos
-                        }else {
-                            $(".login").hide(); //Oculto el login
-                            $(".logout").show();//Muestro el Cerrar Sesión                     
-                            $('#msg_username').html('<b>Bienvenido: '+ msg+ '</b>').css('color','green');  //Muestro usuario logueado                     
-                        }                         
+                        } else {
+                            location.reload();//Vuelva a cargar el documento actual
+                                             
+                        }
+                                      
                     }
                 }); 
             });     

@@ -57,6 +57,8 @@ CREATE TABLE perfiles(
 
 INSERT INTO perfiles (nombre) VALUES('Alumno');
 
+--No hay relacion perfiles y socios
+
 --Creo una columna perfil_id en la tabla socios con valor por defecto 1
 
 ALTER TABLE socios ADD COLUMN perfil_id INT NOT NULL DEFAULT '1';
@@ -68,18 +70,11 @@ ALTER TABLE socios ADD COLUMN perfil_id INT NOT NULL DEFAULT '1';
 */
 --Se creo un metodo llamado valid_user_ajax que recibe dos parametros usuario y pass, este metodo se encuentra en el modelo socio.
 --Se agrega en el controller welcome un función que se llama valid_login_ajax() que verifica si la petición es ajax.
--- Se agrega en welcome un logout ajax.
 -- Al pie del footer_views_fron se agrega el codigo Jquery necesario para el logueo..
--- En el head_views_front se agrega dos li uno para el boton cerrar sesion que permanece oculto y uno para mostrar si el usuario si el logeo es correcto o error en caso contrario.
-
-VERIFICAR SI YENDO A OTRO ENLACE NO SE PIERDE LA SESSION PORQUE ALCTUALMENTE SOLO QUEDA EN EL HOME PORQUE NO HAY OTRO FRONT CREADO...
+-- En el head_views_front se agrega una opción a la derecha, cuando uno esta logeado ve el usuario.
+--ANDA de manera correcta.
 
 /*
-* Datos Perfil
+* Front Libros
 */
--- Nueva opción en el menú con datos del perfil(No funcional aun)
--- Cerrar Sesión. (Funcional)
-  /*
-  * Front Libros
-  */
-  Listados de libros solamenten sin funcionalidad de prestamos y mas datos.
+Listados de libros solamenten sin funcionalidad de prestamos y mas datos.
